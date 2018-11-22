@@ -1,5 +1,5 @@
 
-package com.test.Script;
+package com.test.scriptgen.generator;
 
 import java.io.BufferedWriter;
 import java.io.File;

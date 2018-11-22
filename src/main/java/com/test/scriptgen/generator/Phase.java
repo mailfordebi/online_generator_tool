@@ -1,4 +1,4 @@
-package com.test.Script;
+package com.test.scriptgen.generator;
 
 
 /**
