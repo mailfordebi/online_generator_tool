@@ -1,0 +1,540 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd"
+	objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+
+	<!-- Includes: update_20180724dpradha update_20180724dpradha_indices -->
+	<changeSet id="BEL-CLM-CR227-online_changes" author="dpradha"
+		context="online_changes">
+
+		<!-- Added the MD5 hash for the incorrect version of this changeset, which 
+			used 1 and 0 as values for boolean columns -->
+		<validCheckSum>8:c106adf119ac30f369f13fd7115a19e8</validCheckSum>
+
+		<addColumn tableName="CarCollisionLiabilityMessage">
+			<column name="argSettlementOfDispute" type="qis.dbclob" />
+		</addColumn>
+
+		<createTable tableName="CarCollLiabMsgDocType"
+			tablespace="PRODUCTION">
+			<column name="carCollisionLiabMsgDocTypeId" type="qis.integer">
+				<constraints primaryKey="true"
+					primaryKeyName="CCLMDTy_PK" nullable="false" />
+			</column>
+			<column name="externalIdentifier" type="qis.vargraphic(80)">
+				<constraints nullable="false" />
+			</column>
+			<column name="tsCreated" type="qis.timestamp">
+				<constraints nullable="false" />
+			</column>
+			<column name="userIdCreated" type="qis.vargraphic(30)">
+				<constraints nullable="false" />
+			</column>
+			<column name="tsChanged" type="qis.timestamp">
+				<constraints nullable="false" />
+			</column>
+			<column name="userIdChanged" type="qis.vargraphic(30)">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+
+		<createTable tableName="CarCollLiabMsgDocTypeLang"
+			tablespace="PRODUCTION">
+			<column name="carCollisionLiabMsgDocTypeId" type="qis.integer">
+				<constraints primaryKey="true"
+					primaryKeyName="CCLMDocTyL_PK" nullable="false" />
+			</column>
+			<column name="languageId" type="qis.integer">
+				<constraints primaryKey="true"
+					primaryKeyName="CCLMDocTyL_PK" nullable="false" />
+			</column>
+			<column name="description" type="qis.vargraphic(100)">
+				<constraints nullable="false" />
+			</column>
+			<column name="tsCreated" type="qis.timestamp">
+				<constraints nullable="false" />
+			</column>
+			<column name="userIdCreated" type="qis.vargraphic(30)">
+				<constraints nullable="false" />
+			</column>
+			<column name="tsChanged" type="qis.timestamp">
+				<constraints nullable="false" />
+			</column>
+			<column name="userIdChanged" type="qis.vargraphic(30)">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+		<addForeignKeyConstraint
+			baseTableName="CarCollLiabMsgDocTypeLang"
+			baseColumnNames="carCollisionLiabMsgDocTypeId"
+			constraintName="CCLMDocTyL_CCLMDocTy_FK"
+			referencedTableName="CarCollLiabMsgDocType"
+			referencedColumnNames="carCollisionLiabMsgDocTypeId" />
+		<addForeignKeyConstraint
+			baseTableName="CarCollLiabMsgDocTypeLang"
+			baseColumnNames="languageId" constraintName="CCLMDocTyL_Lang_FK"
+			referencedTableName="Language" referencedColumnNames="languageId" />
+
+		<insert tableName="CarCollLiabMsgDocType">
+			<column name="carCollisionLiabMsgDocTypeId" value="-1" />
+			<column name="externalIdentifier" value="InspectionReport" />
+			<column name="tsCreated" valueComputed="current_timestamp" />
+			<column name="userIdCreated"
+				value="BEL-CLM-CR227-online_changes" />
+			<column name="tsChanged" valueComputed="current_timestamp" />
+			<column name="userIdChanged"
+				value="BEL-CLM-CR227-online_changes" />
+		</insert>
+		<insert tableName="CarCollLiabMsgDocType">
+			<column name="carCollisionLiabMsgDocTypeId" value="-2" />
+			<column name="externalIdentifier" value="ClaimEvidence" />
+			<column name="tsCreated" valueComputed="current_timestamp" />
+			<column name="userIdCreated"
+				value="BEL-CLM-CR227-online_changes" />
+			<column name="tsChanged" valueComputed="current_timestamp" />
+			<column name="userIdChanged"
+				value="BEL-CLM-CR227-online_changes" />
+		</insert>
+		<insert tableName="CarCollLiabMsgDocType">
+			<column name="carCollisionLiabMsgDocTypeId" value="-3" />
+			<column name="externalIdentifier" value="WitnessReport" />
+			<column name="tsCreated" valueComputed="current_timestamp" />
+			<column name="userIdCreated"
+				value="BEL-CLM-CR227-online_changes" />
+			<column name="tsChanged" valueComputed="current_timestamp" />
+			<column name="userIdChanged"
+				value="BEL-CLM-CR227-online_changes" />
+		</insert>
+		<insert tableName="CarCollLiabMsgDocType">
+			<column name="carCollisionLiabMsgDocTypeId" value="-4" />
+			<column name="externalIdentifier" value="Sentence" />
+			<column name="tsCreated" valueComputed="current_timestamp" />
+			<column name="userIdCreated"
+				value="BEL-CLM-CR227-online_changes" />
+			<column name="tsChanged" valueComputed="current_timestamp" />
+			<column name="userIdChanged"
+				value="BEL-CLM-CR227-online_changes" />
+		</insert>
+		<insert tableName="CarCollLiabMsgDocType">
+			<column name="carCollisionLiabMsgDocTypeId" value="-5" />
+			<column name="externalIdentifier" value="ProveOfNoInsurance" />
+			<column name="tsCreated" valueComputed="current_timestamp" />
+			<column name="userIdCreated"
+				value="BEL-CLM-CR227-online_changes" />
+			<column name="tsChanged" valueComputed="current_timestamp" />
+			<column name="userIdChanged"
+				value="BEL-CLM-CR227-online_changes" />
+		</insert>
+		<insert tableName="CarCollLiabMsgDocType">
+			<column name="carCollisionLiabMsgDocTypeId" value="-6" />
+			<column name="externalIdentifier" value="DisproveOfInsurance" />
+			<column name="tsCreated" valueComputed="current_timestamp" />
+			<column name="userIdCreated"
+				value="BEL-CLM-CR227-online_changes" />
+			<column name="tsChanged" valueComputed="current_timestamp" />
+			<column name="userIdChanged"
+				value="BEL-CLM-CR227-online_changes" />
+		</insert>
+		<insert tableName="CarCollLiabMsgDocType">
+			<column name="carCollisionLiabMsgDocTypeId" value="-7" />
+			<column name="externalIdentifier" value="Miscellaneous" />
+			<column name="tsCreated" valueComputed="current_timestamp" />
+			<column name="userIdCreated"
+				value="BEL-CLM-CR227-online_changes" />
+			<column name="tsChanged" valueComputed="current_timestamp" />
+			<column name="userIdChanged"
+				value="BEL-CLM-CR227-online_changes" />
+		</insert>
+		<ext:insertTranslations
+			tableName="CarCollLiabMsgDocTypeLang"
+			userId="BEL-CLM-CR227-online_changes" timestamp="current_timestamp">
+			<ext:primaryKeyColumns>
+				<ext:column name="carCollisionLiabMsgDocTypeId"
+					value="-1" />
+			</ext:primaryKeyColumns>
+			<ext:translationColumns>
+				<ext:column name="description">
+					<ext:translation languageCode="en"
+						value="Inspection report" />
+					<ext:translation languageCode="nl"
+						value="Inspectie rapport" />
+				</ext:column>
+			</ext:translationColumns>
+		</ext:insertTranslations>
+		<ext:insertTranslations
+			tableName="CarCollLiabMsgDocTypeLang"
+			userId="BEL-CLM-CR227-online_changes" timestamp="current_timestamp">
+			<ext:primaryKeyColumns>
+				<ext:column name="carCollisionLiabMsgDocTypeId"
+					value="-2" />
+			</ext:primaryKeyColumns>
+			<ext:translationColumns>
+				<ext:column name="description">
+					<ext:translation languageCode="en"
+						value="Claim evidence" />
+					<ext:translation languageCode="nl"
+						value="Schade bewijsstuk" />
+				</ext:column>
+			</ext:translationColumns>
+		</ext:insertTranslations>
+		<ext:insertTranslations
+			tableName="CarCollLiabMsgDocTypeLang"
+			userId="BEL-CLM-CR227-online_changes" timestamp="current_timestamp">
+			<ext:primaryKeyColumns>
+				<ext:column name="carCollisionLiabMsgDocTypeId"
+					value="-3" />
+			</ext:primaryKeyColumns>
+			<ext:translationColumns>
+				<ext:column name="description">
+					<ext:translation languageCode="en"
+						value="Witness report" />
+					<ext:translation languageCode="nl"
+						value="Getuige rapport" />
+				</ext:column>
+			</ext:translationColumns>
+		</ext:insertTranslations>
+		<ext:insertTranslations
+			tableName="CarCollLiabMsgDocTypeLang"
+			userId="BEL-CLM-CR227-online_changes" timestamp="current_timestamp">
+			<ext:primaryKeyColumns>
+				<ext:column name="carCollisionLiabMsgDocTypeId"
+					value="-4" />
+			</ext:primaryKeyColumns>
+			<ext:translationColumns>
+				<ext:column name="description">
+					<ext:translation languageCode="en"
+						value="Sentence of a court" />
+					<ext:translation languageCode="nl" value="Vonnis" />
+				</ext:column>
+			</ext:translationColumns>
+		</ext:insertTranslations>
+		<ext:insertTranslations
+			tableName="CarCollLiabMsgDocTypeLang"
+			userId="BEL-CLM-CR227-online_changes" timestamp="current_timestamp">
+			<ext:primaryKeyColumns>
+				<ext:column name="carCollisionLiabMsgDocTypeId"
+					value="-5" />
+			</ext:primaryKeyColumns>
+			<ext:translationColumns>
+				<ext:column name="description">
+					<ext:translation languageCode="en"
+						value="Proof of no insurance" />
+					<ext:translation languageCode="nl"
+						value="Bewijs van geen verzekering" />
+				</ext:column>
+			</ext:translationColumns>
+		</ext:insertTranslations>
+		<ext:insertTranslations
+			tableName="CarCollLiabMsgDocTypeLang"
+			userId="BEL-CLM-CR227-online_changes" timestamp="current_timestamp">
+			<ext:primaryKeyColumns>
+				<ext:column name="carCollisionLiabMsgDocTypeId"
+					value="-6" />
+			</ext:primaryKeyColumns>
+			<ext:translationColumns>
+				<ext:column name="description">
+					<ext:translation languageCode="en"
+						value="Disprove of insurance" />
+					<ext:translation languageCode="nl"
+						value="Tegenbewijs van verzekering" />
+				</ext:column>
+			</ext:translationColumns>
+		</ext:insertTranslations>
+		<ext:insertTranslations
+			tableName="CarCollLiabMsgDocTypeLang"
+			userId="BEL-CLM-CR227-online_changes" timestamp="current_timestamp">
+			<ext:primaryKeyColumns>
+				<ext:column name="carCollisionLiabMsgDocTypeId"
+					value="-7" />
+			</ext:primaryKeyColumns>
+			<ext:translationColumns>
+				<ext:column name="description">
+					<ext:translation languageCode="en"
+						value="Miscellaneous" />
+					<ext:translation languageCode="nl" value="Divers" />
+				</ext:column>
+			</ext:translationColumns>
+		</ext:insertTranslations>
+
+		<addColumn tableName="CarCollisionLiabMsgDocument">
+			<column name="carCollisionLiabMsgDocTypeId" type="qis.integer" />
+		</addColumn>
+
+		<addColumn tableName="CarCollisionLiabMsgDocument">
+			<column name="additionalDocumentDescription"
+				type="qis.vargraphic(75)" />
+		</addColumn>
+
+		<addForeignKeyConstraint
+			baseTableName="CarCollisionLiabMsgDocument"
+			baseColumnNames="carCollisionLiabMsgDocTypeId"
+			constraintName="CCLMDoc_CCLMDocTy_FK"
+			referencedTableName="CarCollLiabMsgDocType"
+			referencedColumnNames="carCollisionLiabMsgDocTypeId" />
+
+		<insert tableName="CarCollisionLiabilityMsgType">
+			<column name="CarCollisionLiabilityMsgTypeId"
+				valueNumeric="-23" />
+			<column name="externalIdentifier" value="3 Inkomend" />
+			<column name="isIncomingMessage" valueBoolean="true" />
+			<column name="tsCreated" valueComputed="current_timestamp" />
+			<column name="userIdCreated"
+				value="BEL-CLM-CR227-online_changes" />
+			<column name="tsChanged" valueComputed="current_timestamp" />
+			<column name="userIdChanged"
+				value="BEL-CLM-CR227-online_changes" />
+			<column name="nameInterface" value="RDR" />
+		</insert>
+		<insert tableName="CarCollisionLiabilityMsgType">
+			<column name="CarCollisionLiabilityMsgTypeId"
+				valueNumeric="-24" />
+			<column name="externalIdentifier" value="3 Uitgaand" />
+			<column name="isIncomingMessage" valueBoolean="false" />
+			<column name="tsCreated" valueComputed="current_timestamp" />
+			<column name="userIdCreated"
+				value="BEL-CLM-CR227-online_changes" />
+			<column name="tsChanged" valueComputed="current_timestamp" />
+			<column name="userIdChanged"
+				value="BEL-CLM-CR227-online_changes" />
+			<column name="nameInterface" value="RDR" />
+		</insert>
+		<insert tableName="CarCollisionLiabilityMsgType">
+			<column name="CarCollisionLiabilityMsgTypeId"
+				valueNumeric="-25" />
+			<column name="externalIdentifier" value="4 Inkomend" />
+			<column name="isIncomingMessage" valueBoolean="true" />
+			<column name="tsCreated" valueComputed="current_timestamp" />
+			<column name="userIdCreated"
+				value="BEL-CLM-CR227-online_changes" />
+			<column name="tsChanged" valueComputed="current_timestamp" />
+			<column name="userIdChanged"
+				value="BEL-CLM-CR227-online_changes" />
+			<column name="nameInterface" value="RDR" />
+		</insert>
+		<insert tableName="CarCollisionLiabilityMsgType">
+			<column name="CarCollisionLiabilityMsgTypeId"
+				valueNumeric="-26" />
+			<column name="externalIdentifier" value="4 Uitgaand" />
+			<column name="isIncomingMessage" valueBoolean="false" />
+			<column name="tsCreated" valueComputed="current_timestamp" />
+			<column name="userIdCreated"
+				value="BEL-CLM-CR227-online_changes" />
+			<column name="tsChanged" valueComputed="current_timestamp" />
+			<column name="userIdChanged"
+				value="BEL-CLM-CR227-online_changes" />
+			<column name="nameInterface" value="RDR" />
+		</insert>
+		<insert tableName="CarCollisionLiabilityMsgType">
+			<column name="CarCollisionLiabilityMsgTypeId"
+				valueNumeric="-27" />
+			<column name="externalIdentifier" value="5 Inkomend" />
+			<column name="isIncomingMessage" valueBoolean="true" />
+			<column name="tsCreated" valueComputed="current_timestamp" />
+			<column name="userIdCreated"
+				value="BEL-CLM-CR227-online_changes" />
+			<column name="tsChanged" valueComputed="current_timestamp" />
+			<column name="userIdChanged"
+				value="BEL-CLM-CR227-online_changes" />
+			<column name="nameInterface" value="RDR" />
+		</insert>
+		<insert tableName="CarCollisionLiabilityMsgType">
+			<column name="CarCollisionLiabilityMsgTypeId"
+				valueNumeric="-28" />
+			<column name="externalIdentifier" value="5 Uitgaand" />
+			<column name="isIncomingMessage" valueBoolean="false" />
+			<column name="tsCreated" valueComputed="current_timestamp" />
+			<column name="userIdCreated"
+				value="BEL-CLM-CR227-online_changes" />
+			<column name="tsChanged" valueComputed="current_timestamp" />
+			<column name="userIdChanged"
+				value="BEL-CLM-CR227-online_changes" />
+			<column name="nameInterface" value="RDR" />
+		</insert>
+		<ext:insertTranslations
+			tableName="CarCollisionLiabMsgTypeLang"
+			userId="BEL-CLM-CR227-online_changes" timestamp="current_timestamp">
+			<ext:primaryKeyColumns>
+				<ext:column name="carCollisionLiabilityMsgTypeId"
+					value="-23" />
+			</ext:primaryKeyColumns>
+			<ext:translationColumns>
+				<ext:column name="description">
+					<ext:translation languageCode="en"
+						value="Incoming settlement of dispute" />
+					<ext:translation languageCode="nl"
+						value="Inkomend regeling van betwisting" />
+				</ext:column>
+			</ext:translationColumns>
+		</ext:insertTranslations>
+		<ext:insertTranslations
+			tableName="CarCollisionLiabMsgTypeLang"
+			userId="BEL-CLM-CR227-online_changes" timestamp="current_timestamp">
+			<ext:primaryKeyColumns>
+				<ext:column name="carCollisionLiabilityMsgTypeId"
+					value="-24" />
+			</ext:primaryKeyColumns>
+			<ext:translationColumns>
+				<ext:column name="description">
+					<ext:translation languageCode="en"
+						value="Outgoing settlement of dispute" />
+					<ext:translation languageCode="nl"
+						value="Uitgaand regeling van betwisting" />
+				</ext:column>
+			</ext:translationColumns>
+		</ext:insertTranslations>
+		<ext:insertTranslations
+			tableName="CarCollisionLiabMsgTypeLang"
+			userId="BEL-CLM-CR227-online_changes" timestamp="current_timestamp">
+			<ext:primaryKeyColumns>
+				<ext:column name="carCollisionLiabilityMsgTypeId"
+					value="-25" />
+			</ext:primaryKeyColumns>
+			<ext:translationColumns>
+				<ext:column name="description">
+					<ext:translation languageCode="en"
+						value="Incoming answer to a settlement of dispute" />
+					<ext:translation languageCode="nl"
+						value="Inkomend antwoord op regeling van betwisting" />
+				</ext:column>
+			</ext:translationColumns>
+		</ext:insertTranslations>
+		<ext:insertTranslations
+			tableName="CarCollisionLiabMsgTypeLang"
+			userId="BEL-CLM-CR227-online_changes" timestamp="current_timestamp">
+			<ext:primaryKeyColumns>
+				<ext:column name="carCollisionLiabilityMsgTypeId"
+					value="-26" />
+			</ext:primaryKeyColumns>
+			<ext:translationColumns>
+				<ext:column name="description">
+					<ext:translation languageCode="en"
+						value="Outgoing answer to a settlement of dispute" />
+					<ext:translation languageCode="nl"
+						value="Uitgaand antwoord op regeling van betwisting" />
+				</ext:column>
+			</ext:translationColumns>
+		</ext:insertTranslations>
+		<ext:insertTranslations
+			tableName="CarCollisionLiabMsgTypeLang"
+			userId="BEL-CLM-CR227-online_changes" timestamp="current_timestamp">
+			<ext:primaryKeyColumns>
+				<ext:column name="carCollisionLiabilityMsgTypeId"
+					value="-27" />
+			</ext:primaryKeyColumns>
+			<ext:translationColumns>
+				<ext:column name="description">
+					<ext:translation languageCode="en"
+						value="Incoming message with documents for a settlement of dispute" />
+					<ext:translation languageCode="nl"
+						value="Inkomend bericht met documenten voor regeling van betwisting" />
+				</ext:column>
+			</ext:translationColumns>
+		</ext:insertTranslations>
+		<ext:insertTranslations
+			tableName="CarCollisionLiabMsgTypeLang"
+			userId="BEL-CLM-CR227-online_changes" timestamp="current_timestamp">
+			<ext:primaryKeyColumns>
+				<ext:column name="carCollisionLiabilityMsgTypeId"
+					value="-28" />
+			</ext:primaryKeyColumns>
+			<ext:translationColumns>
+				<ext:column name="description">
+					<ext:translation languageCode="en"
+						value="Outgoing message with documents for a settlement of dispute" />
+					<ext:translation languageCode="nl"
+						value="Uitgaand bericht met documenten voor regeling van betwisting" />
+				</ext:column>
+			</ext:translationColumns>
+		</ext:insertTranslations>
+
+		<insert tableName="UserTaskType">
+			<column name="userTaskCategoryId" valueNumeric="-2" />
+			<column name="userTaskTypeId" valueNumeric="-1784" />
+			<column name="priorityId" valueNumeric="-2" />
+			<column name="externalIdentifier"
+				value="processSettlementOfDispute" />
+			<column name="maxNrOfTermUnitsForCompletion" valueNumeric="1" />
+			<column name="userTaskTermUnitId" valueNumeric="-2" />
+			<column name="tsCreated" valueComputed="current_timestamp" />
+			<column name="userIdCreated"
+				value="BEL-CLM-CR227-online_changes" />
+			<column name="tsChanged" valueComputed="current_timestamp" />
+			<column name="userIdChanged"
+				value="BEL-CLM-CR227-online_changes" />
+			<column name="userDepartmentId" valueNumeric="-11" />
+			<column name="assignToDerivedAppProcGrp" valueBoolean="false" />
+			<column name="isActive" valueBoolean="true" />
+			<column name="recreateTaskWhenExpiring" valueBoolean="false" />
+			<column name="isForInjuryTreatmentCourse" valueBoolean="false" />
+			<column name="isForAutomaticCreation" valueBoolean="true" />
+			<column name="cancelAtPolicyCancellation" valueBoolean="false" />
+			<column name="isForImpactfulClaim" valueBoolean="false" />
+			<column name="canBeSelectedByUser" valueBoolean="false" />
+			<column name="hasStandardTranslations" valueBoolean="true" />
+			<column name="excludeFromSLA" valueBoolean="false" />
+		</insert>
+		<ext:insertTranslations
+			tableName="UserTaskTypeLanguage"
+			userId="BEL-CLM-CR227-online_changes" timestamp="current_timestamp">
+			<ext:primaryKeyColumns>
+				<ext:column name="userTaskTypeId" value="-1784" />
+			</ext:primaryKeyColumns>
+			<ext:translationColumns>
+				<ext:column name="name">
+					<ext:translation languageCode="en"
+						value="Process the settlement of dispute" />
+					<ext:translation languageCode="nl"
+						value="Verwerk regeling van betwisting" />
+				</ext:column>
+			</ext:translationColumns>
+		</ext:insertTranslations>
+
+		<update tableName="UserTaskTypeLanguage">
+			<column name="description"
+				value="For this claim a settlement of dispute is initiated. Check for a possible answer and verify if an incoming borderel is received justly." />
+			<where>languageId = (select languageId from Language where
+				upper(Language.code) = 'EN') and userTaskTypeId = -1784</where>
+		</update>
+		<update tableName="UserTaskTypeLanguage">
+			<column name="description"
+				value="Voor deze claim is een regeling van betwisting geïnitieerd. Controleer op antwoord en of eventuele inkomende borderel terecht is ontvangen." />
+			<where>languageId = (select languageId from Language where
+				upper(Language.code) = 'NL') and userTaskTypeId = -1784</where>
+		</update>
+
+		<insert tableName="TableWithLanguageTable">
+			<column name="tableWithLanguageTableId"
+				valueComputed="(select coalesce(min(tableWithLanguageTableId), 0) - 1 from TableWithLanguageTable)" />
+			<column name="scriptProjectId"
+				valueComputed="(select scriptProjectId from ScriptProject where externalIdentifier = 'CDSScripts')" />
+			<column name="standardTranslationTypeId"
+				valueComputed="(select standardTranslationTypeId from StandardTranslationType where externalIdentifier = 'forAllRecords')" />
+			<column name="tableName" value="CarCollLiabMsgDocType" />
+			<column name="tsCreated" valueComputed="current_timestamp" />
+			<column name="userIdCreated"
+				value="BEL-CLM-CR227-online_changes" />
+			<column name="tsChanged" valueComputed="current_timestamp" />
+			<column name="userIdChanged"
+				value="BEL-CLM-CR227-online_changes" />
+			<column name="isExportableEntity" valueBoolean="true" />
+			<column name="importOrder" valueNumeric="0" />
+		</insert>
+	</changeSet>
+
+	<changeSet id="BEL-CLM-CR227-online_indices" author="dpradha"
+		context="online_indices">
+		<createIndex indexName="CCLMDocTyL_Lang_FK"
+			tableName="CarCollLiabMsgDocTypeLang">
+			<column name="languageId" />
+		</createIndex>
+		<createIndex indexName="CCLMDoc_CCLMDocTy_FK"
+			tableName="CarCollisionLiabMsgDocument">
+			<column name="carCollisionLiabMsgDocTypeId" />
+		</createIndex>
+
+	</changeSet>
+</databaseChangeLog>
