@@ -113,7 +113,7 @@ public class ScriptGenerator {
 		// If no values were passed, set the default values.
 		// Set the input file.
 		if (StringUtils.isEmpty(inputFile)) {
-			inputFile = "F:\\My R$D\\Hosting_Project\\LiquibaseScriptGenerator\\src\\main\\resources\\changelogs\\QSD-42470.xml";
+			inputFile = "temp.xml";
 		}
 
 		// Set the dbms dialects.
@@ -315,11 +315,14 @@ public class ScriptGenerator {
 	public List<String> generate(String xml, String args[]) {
 		List<String> strings=null;
 		File file = new File("temp.xml");
+		System.out.println(xml);
+		BufferedWriter bufferedWriter=null;
 		try {
 		file.createNewFile();
 		Writer writer = new FileWriter(file);
-		BufferedWriter bufferedWriter = new BufferedWriter(writer);
+		bufferedWriter= new BufferedWriter(writer);
         bufferedWriter.write(xml);
+        bufferedWriter.close();
 		ScriptGenerator generator = new ScriptGenerator();
 			// Process the command line arguments.
 			if (!generator.handleCommandlineArguments(args)) {
