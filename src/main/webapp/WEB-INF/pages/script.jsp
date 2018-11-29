@@ -43,12 +43,19 @@
 	<form id="process1" method="POST" action="/generate">
 		<div id="left" class="content">
 			<div class="horiz">
-				<label for="input">Liquibase Script:</label> 
+				<label for="input">Liquibase Script:</label>
 			</div>
 			<textarea name="input" rows="20" cols="20" id="input">${inputReq}</textarea>
 			<div class="horiz">
-				<input type="submit" value="Generate SQL"> <span>
-				</span>
+				<div class="left">
+					<input type="radio" name="dbType" value="oracle" checked>Oracle
+					<input type="radio" name="dbType" value="db2">DB2
+					<input type="radio" name="dbType" value="mysql">MYSQL
+					<input type="radio" name="dbType" value="mysql">All
+				</div>
+				<div class="right">
+					<input type="submit" value="Generate SQL" style="margin-right: 30px">
+				</div>
 			</div>
 		</div>
 	</form>
@@ -63,4 +70,6 @@
 			readonly="readonly">${result}</textarea>
 	</div>
 </body>
+
+
 </html>
