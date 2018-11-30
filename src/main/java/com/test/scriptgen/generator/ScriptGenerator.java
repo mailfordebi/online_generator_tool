@@ -63,15 +63,13 @@ public class ScriptGenerator {
 	/**
 	 * Transforms command line arguments to instance variables.
 	 */
-	private boolean handleCommandlineArguments(String[] args) {
+	private boolean handleCommandlineArguments(String dbType) {
 		inputFile = null;
 		outputDirectory = null;
 		dialects = null;
 		phases = null;
 
 		// Parse the commands that were given.
-		if (args != null) {
-			for (String arg : args) {
 				// Check for input file argument.
 				/*if (arg.startsWith("-i=") || arg.startsWith("-input=") || arg.startsWith("-inputFile=")) {
 					inputFile = arg.split("=")[1];
@@ -91,24 +89,29 @@ public class ScriptGenerator {
 				}*/
 
 				// Check for dbms argument
-				if (arg.startsWith("-dbms=")) {
-					String dbmsArg = arg.split("=")[1];
-					dialects = dbmsArg.toLowerCase().split(",");
-					continue;
+				if ("oracle".equals(dbType)) {
+					dialects = new String[]{"oracle"};
+				}
+				if ("db2".equals(dbType)) {
+					dialects = new String[]{"db2"};
+				}
+				if ("mssql".equals(dbType)) {
+					dialects = new String[]{"mssql"};
+				}
+				if ("all".equals(dbType)) {
+					dialects = ALLOWED_DIALECTS.toArray(new String[ALLOWED_DIALECTS.size()]);
 				}
 
 				// Check for phases argument
-				if (arg.startsWith("-p=") || arg.startsWith("-phases=")) {
+				/*if (arg.startsWith("-p=") || arg.startsWith("-phases=")) {
 					String phasesArg = arg.split("=")[1];
 					phases = new ArrayList<>(Arrays.asList(phasesArg.split(",")));
 					continue;
-				}
+				}*/
 
 				// If we reach here, an illegal argument was passed.
-				throw new IllegalArgumentException(
-						"Unknown argument: " + arg + ". Only '-i', '-o', '-dbms', and '-phases' are allowed.");
-			}
-		}
+				/*throw new IllegalArgumentException(
+						"Unknown argument: " + arg + ". Only '-i', '-o', '-dbms', and '-phases' are allowed.");*/
 
 		// If no values were passed, set the default values.
 		// Set the input file.
@@ -117,9 +120,9 @@ public class ScriptGenerator {
 		}
 
 		// Set the dbms dialects.
-		if (dialects == null || dialects.length == 0) {
+		/*if (dialects == null || dialects.length == 0) {
 			dialects = ALLOWED_DIALECTS.toArray(new String[ALLOWED_DIALECTS.size()]);
-		}
+		}*/
 
 		// Set the phases.
 		if (phases == null || phases.isEmpty()) {
@@ -253,10 +256,10 @@ public class ScriptGenerator {
 	 * Determines the filename of the file in which the sql for a certain phase and
 	 * dialect are stored.
 	 */
-	private String determineFileName(String dialect, String phase) {
+	/*private String determineFileName(String dialect, String phase) {
 		return BASE_OUTPUT_FILE_NAME + "-" + dialect + "-" + Phase.determineNameByOrder(Integer.valueOf(phase))
 				+ ".sql";
-	}
+	}*/
 
 	/**
 	 * This class generates SQL scripts based on changelog files, for any given
@@ -312,7 +315,7 @@ public class ScriptGenerator {
 		 new ScriptGenerator().generate(null,null);
 	}
 
-	public List<String> generate(String xml, String args[]) {
+	public List<String> generate(String xml, String dbType) {
 		List<String> strings=null;
 		File file = new File("temp.xml");
 		System.out.println(xml);
@@ -325,7 +328,7 @@ public class ScriptGenerator {
         bufferedWriter.close();
 		ScriptGenerator generator = new ScriptGenerator();
 			// Process the command line arguments.
-			if (!generator.handleCommandlineArguments(args)) {
+			if (!generator.handleCommandlineArguments(dbType)) {
 				//System.exit(1);
 				return null;
 			}

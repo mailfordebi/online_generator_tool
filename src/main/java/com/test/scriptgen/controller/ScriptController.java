@@ -11,28 +11,28 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.test.scriptgen.generator.ScriptGenerator;
 
-
 @Controller
 public class ScriptController {
-	
+
 	@Autowired
 	private ScriptGenerator scriptGenerator;
-	
+
 	@GetMapping("/")
 	public String index() {
 		return "script";
 	}
 
 	@PostMapping("/generate")
-	public String callService(@RequestParam("input") String xml, Model model) {
+	public String callService(@RequestParam("input") String xml, @RequestParam("dbType") String dbType,
+			Model model) {
 		model.addAttribute("inputReq", xml);
 		String res = "hilll";
-		List<String> strings=null;
+		List<String> strings = null;
 		try {
-			strings=scriptGenerator.generate(xml, null);
-			res=strings.get(0);
+			strings = scriptGenerator.generate(xml, dbType);
+			res = strings.get(0);
 			System.out.println(res);
-			
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

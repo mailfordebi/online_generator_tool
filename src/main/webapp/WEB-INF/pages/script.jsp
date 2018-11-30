@@ -50,8 +50,8 @@
 				<div class="left">
 					<input type="radio" name="dbType" value="oracle" checked>Oracle
 					<input type="radio" name="dbType" value="db2">DB2
-					<input type="radio" name="dbType" value="mysql">MYSQL
-					<input type="radio" name="dbType" value="mysql">All
+					<input type="radio" name="dbType" value="mssql">MSSQL
+					<input type="radio" name="dbType" value="all">All
 				</div>
 				<div class="right">
 					<input type="submit" value="Generate SQL" style="margin-right: 30px">
