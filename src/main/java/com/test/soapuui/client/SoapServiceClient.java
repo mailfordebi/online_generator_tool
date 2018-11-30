@@ -3,7 +3,9 @@ package com.test.soapuui.client;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -34,13 +36,13 @@ public class SoapServiceClient extends WebServiceGatewaySupport {
 	private final static String FTS_PRO_SOAP_URL = "http://dev.unity-payment.monamisoft.net:80/monamitech/nackupdate";
 
 	public String callService(String request) throws Exception {
-		request=request.replaceAll("\n",""); 
-		request=request.replaceAll("\t","");
-		request=request.replaceAll(">\\s*<", "><");
+		request = request.replaceAll("\n", "");
+		request = request.replaceAll("\t", "");
+		request = request.replaceAll(">\\s*<", "><");
 		System.out.println(request);
-		String subString=request.substring(1, request.indexOf("Envelope"));
+		String subString = request.substring(1, request.indexOf("Envelope"));
 		System.out.println(subString);
-		String pattern="<"+subString+"Body>(.+?)</"+subString+"Body>";
+		String pattern = "<" + subString + "Body>(.+?)</" + subString + "Body>";
 		System.out.println(pattern);
 		Pattern p = Pattern.compile(pattern);
 		Matcher m = p.matcher(request);
@@ -67,26 +69,35 @@ public class SoapServiceClient extends WebServiceGatewaySupport {
 		return httpComponentsMessageSender;
 	}
 
-	public String processwsdl(String request) throws Exception {
-		List<String> soapRequests=new ArrayList<>();
+	public Map<Integer, List<String>> processwsdl(String request) throws Exception {
+		Map<Integer, List<String>> serviceMapDetails = new HashMap<>();
 		WSDLParser parser = new WSDLParser();
 		Definitions wsdl = parser.parse(request);
 		StringWriter writer = new StringWriter();
 		SOARequestCreator creator = new SOARequestCreator(wsdl, new RequestTemplateCreator(),
 				new MarkupBuilder(writer));
+		// Get list of services from wsdl
 		for (Service s : wsdl.getServices()) {
+			// List of port for each services
+			int i = 0;
 			for (Port port : s.getPorts()) {
+				List<String> serviceDetails = new ArrayList<>();
+				//serviceDetails(0) will be the url.
+				//serviceDetails(1) will be the soap request. 
+				System.out.println(port.getAddress().getLocation());
+				serviceDetails.add(port.getAddress().getLocation());
 				Binding binding = port.getBinding();
 				PortType portType = binding.getPortType();
 				for (Operation op : portType.getOperations()) {
 					creator.createRequest(port.getName(), op.getName(), binding.getName());
 					System.out.println(writer);
-					soapRequests.add(writer.toString());
+					serviceDetails.add(writer.toString());
 					writer.getBuffer().setLength(0);
+					serviceMapDetails.put(i, serviceDetails);
 				}
 			}
 		}
-		return soapRequests.get(0);
+		return serviceMapDetails;
 	}
 
 }

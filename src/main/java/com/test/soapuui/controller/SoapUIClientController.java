@@ -1,5 +1,8 @@
 package com.test.soapuui.controller;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,7 +43,7 @@ public class SoapUIClientController {
 		model.addAttribute("inputReq", wsdlName);
 		String res = "";
 		try {
-			res = soapServiceClient.processwsdl(wsdlName);
+			Map<Integer, List<String>> serviceMapDetails = soapServiceClient.processwsdl(wsdlName);
 			System.out.println(res);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
