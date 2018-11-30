@@ -43,7 +43,7 @@
 	<form id="process1" method="POST" action="/generate">
 		<div id="left" class="content">
 			<div class="horiz">
-				<label for="input">Liquibase Script:</label>
+				<label for="input">Liquibase Script(Single changeset):</label>
 			</div>
 			<textarea name="input" rows="20" cols="20" id="input">${inputReq}</textarea>
 			<div class="horiz">

@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.test</groupId>
-	<artifactId>LiquibaseScriptGenerator</artifactId>
+	<artifactId>online_tool</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
@@ -70,14 +70,20 @@
 			<artifactId>tomcat-embed-jasper</artifactId>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.ws</groupId>
+			<artifactId>spring-ws-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.predic8</groupId>
+			<artifactId>soa-model-core</artifactId>
+			<version>1.6.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>
-		<!-- <resources>
-			<resource>
-				<directory>changelogs</directory>
-			</resource>
-		</resources> -->
+		<!-- <resources> <resource> <directory>changelogs</directory> </resource> 
+			</resources> -->
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

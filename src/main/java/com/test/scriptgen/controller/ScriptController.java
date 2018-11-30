@@ -17,9 +17,9 @@ public class ScriptController {
 	@Autowired
 	private ScriptGenerator scriptGenerator;
 
-	@GetMapping("/")
-	public String index() {
-		return "script";
+	@GetMapping("/scriptgen")
+	public String homeScriptGen() {
+		return "script_gen";
 	}
 
 	@PostMapping("/generate")
@@ -38,6 +38,6 @@ public class ScriptController {
 			e.printStackTrace();
 		}
 		model.addAttribute("result", strings);
-		return "script";
+		return "script_gen";
 	}
 }
