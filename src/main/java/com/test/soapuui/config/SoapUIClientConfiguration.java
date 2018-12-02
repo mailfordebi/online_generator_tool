@@ -8,7 +8,7 @@ import com.test.soapuui.client.SoapServiceClient;
 @Configuration
 public class SoapUIClientConfiguration {
 
-	private final static String FTS_PRO_SOAP_URL = "http://dev.unity-payment.monamisoft.net:80/monamitech/nackupdate";
+	private final static String FTS_PRO_SOAP_URL = "";
 
 	@Bean
 	public SoapServiceClient callService() {

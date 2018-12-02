@@ -1,8 +1,5 @@
 package com.test.soapuui.controller;
 
-import java.util.List;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,9 +8,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.test.soapuui.client.SoapServiceClient;
+import com.test.sopauui.util.ServiceDetails;
 
 @Controller
 public class SoapUIClientController {
+	ServiceDetails serviceDetails = null;
 
 	@Autowired
 	private SoapServiceClient soapServiceClient;
@@ -24,11 +23,13 @@ public class SoapUIClientController {
 	}
 
 	@PostMapping("/callService")
-	public String callService(@RequestParam("input") String name, Model model) {
+	public String callService(@RequestParam("soapReq") String name, Model model,
+			@RequestParam("endPoint") String endPoint) {
 		model.addAttribute("inputReq", name);
+		model.addAttribute("serviceMapDetails", serviceDetails.getServiceMapDetails());
 		String res = "";
 		try {
-			res = soapServiceClient.callService(name);
+			res = soapServiceClient.callService(name, endPoint);
 			System.out.println(res);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -40,16 +41,15 @@ public class SoapUIClientController {
 
 	@PostMapping("/processwsdl")
 	public String processwsdl(@RequestParam("wsdlName") String wsdlName, Model model) {
-		model.addAttribute("inputReq", wsdlName);
-		String res = "";
+		// model.addAttribute("inputReq", wsdlName);
 		try {
-			Map<Integer, List<String>> serviceMapDetails = soapServiceClient.processwsdl(wsdlName);
-			System.out.println(res);
+			serviceDetails = soapServiceClient.processwsdl(wsdlName);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		model.addAttribute("inputReq", res);
+		model.addAttribute("serviceNames", serviceDetails.getServiceNames());
+		model.addAttribute("operationNames", serviceDetails.getOperationNames());
+		model.addAttribute("serviceMapDetails", serviceDetails.getServiceMapDetails());
 		return "soap_client";
 	}
 }

@@ -3,9 +3,13 @@ package com.test.soapuui.client;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -27,15 +31,14 @@ import com.predic8.wsdl.Service;
 import com.predic8.wsdl.WSDLParser;
 import com.predic8.wstool.creator.RequestTemplateCreator;
 import com.predic8.wstool.creator.SOARequestCreator;
+import com.test.sopauui.util.ServiceDetails;
 import com.test.sopauui.util.XmlFormatter;
 
 import groovy.xml.MarkupBuilder;
 
 @Qualifier("soapServiceClient")
 public class SoapServiceClient extends WebServiceGatewaySupport {
-	private final static String FTS_PRO_SOAP_URL = "http://dev.unity-payment.monamisoft.net:80/monamitech/nackupdate";
-
-	public String callService(String request) throws Exception {
+	public String callService(String request, String endPoint) throws Exception {
 		request = request.replaceAll("\n", "");
 		request = request.replaceAll("\t", "");
 		request = request.replaceAll(">\\s*<", "><");
@@ -52,7 +55,7 @@ public class SoapServiceClient extends WebServiceGatewaySupport {
 		StreamResult result = new StreamResult(stringWriter);
 		WebServiceTemplate webServiceTemplate = getWebServiceTemplate();
 		// webServiceTemplate.setMessageSender(webServiceMessageSender());
-		webServiceTemplate.sendSourceAndReceiveToResult(FTS_PRO_SOAP_URL, source, result);
+		webServiceTemplate.sendSourceAndReceiveToResult(endPoint, source, result);
 		String soapResponse = "<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\"><SOAP-ENV:Header/><SOAP-ENV:Body>";
 		String response = stringWriter.toString().replaceAll("\\<\\?xml(.+?)\\?\\>", "").trim();
 		soapResponse = soapResponse + response + "</SOAP-ENV:Body></SOAP-ENV:Envelope>";
@@ -69,8 +72,10 @@ public class SoapServiceClient extends WebServiceGatewaySupport {
 		return httpComponentsMessageSender;
 	}
 
-	public Map<Integer, List<String>> processwsdl(String request) throws Exception {
-		Map<Integer, List<String>> serviceMapDetails = new HashMap<>();
+	public ServiceDetails processwsdl(String request) throws Exception {
+		Map<String, String> serviceMapDetails = new HashMap<>();
+		List<String> serviceNames = new ArrayList<>();
+		Set<String> operationNames = new TreeSet<>();
 		WSDLParser parser = new WSDLParser();
 		Definitions wsdl = parser.parse(request);
 		StringWriter writer = new StringWriter();
@@ -79,25 +84,30 @@ public class SoapServiceClient extends WebServiceGatewaySupport {
 		// Get list of services from wsdl
 		for (Service s : wsdl.getServices()) {
 			// List of port for each services
-			int i = 0;
 			for (Port port : s.getPorts()) {
-				List<String> serviceDetails = new ArrayList<>();
-				//serviceDetails(0) will be the url.
-				//serviceDetails(1) will be the soap request. 
 				System.out.println(port.getAddress().getLocation());
-				serviceDetails.add(port.getAddress().getLocation());
+				serviceNames.add(port.getAddress().getLocation());
 				Binding binding = port.getBinding();
 				PortType portType = binding.getPortType();
 				for (Operation op : portType.getOperations()) {
 					creator.createRequest(port.getName(), op.getName(), binding.getName());
 					System.out.println(writer);
-					serviceDetails.add(writer.toString());
+					serviceMapDetails.put(op.getName(), writer.toString());
+					operationNames.add(op.getName());
 					writer.getBuffer().setLength(0);
-					serviceMapDetails.put(i, serviceDetails);
 				}
 			}
 		}
-		return serviceMapDetails;
+
+		List<String> opNames = new ArrayList<>();
+		for (String str : operationNames) {
+			opNames.add(str);
+		}
+		ServiceDetails serviceDetails = new ServiceDetails();
+		serviceDetails.setServiceNames(serviceNames);
+		serviceDetails.setServiceMapDetails(serviceMapDetails);
+		serviceDetails.setOperationNames(opNames);
+		return serviceDetails;
 	}
 
 }
