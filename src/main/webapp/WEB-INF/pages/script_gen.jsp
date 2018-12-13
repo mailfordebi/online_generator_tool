@@ -15,12 +15,12 @@
 	var pageName = "script";
 </script>
 <script src="js/common.js" type="text/javascript"></script>
-
 </head>
+
 <body>
 	<div class="horizMenu">
 		<ul>
-			<li><a href="index.jsp">Instance validation</a></li>
+			<li ><a href="index.jsp">Instance validation</a></li>
 			<li><a href="syntax.jsp">Schema syntax validation</a></li>
 			<li><a href="jjschema.jsp">Java to JSON Schema</a></li>
 			<li><a href="schema2pojo.jsp">JSON Schema to Java</a></li>
@@ -43,15 +43,15 @@
 	<form id="process1" method="POST" action="/generate">
 		<div id="left" class="content">
 			<div class="horiz">
-				<label for="input">Liquibase Script(Single changeset):</label>
+				<label for="input" class="label info">Liquibase Script(Single changeset):</label>
 			</div>
 			<textarea name="input" rows="20" cols="20" id="input">${inputReq}</textarea>
 			<div class="horiz">
 				<div class="left">
-					<input type="radio" name="dbType" value="oracle" checked>Oracle
+					<h1><input type="radio" name="dbType" value="oracle" checked>Oracle
 					<input type="radio" name="dbType" value="db2">DB2
 					<input type="radio" name="dbType" value="mssql">MSSQL
-					<input type="radio" name="dbType" value="all">All
+					<input type="radio" name="dbType" value="all">All</h1>
 				</div>
 				<div class="right">
 					<input type="submit" value="Generate SQL" style="margin-right: 30px">
@@ -62,7 +62,7 @@
 
 	<div id="right" class="content">
 		<div class="horiz">
-			<label for="results">Generation result:</label> <span
+			<label class="label success">Generation result:</label> <span
 				class="error starthidden" id="processingFailure">failure</span> <span
 				class="success starthidden" id="processingSuccess">success</span>
 		</div>

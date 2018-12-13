@@ -26,9 +26,15 @@
 	font-size: 14px;
 	color: #666;
 }
+.label {
+  color: white;
+  padding: 8px;
+}
+.info {background-color: #2196F3;} /* Blue */
+.success {background-color: #4CAF50;} /* Green */
 
 div {
-	background-color: #fffafa;
+	background-color: lightblue;
 }
 
 /*
@@ -105,10 +111,6 @@ textarea.half {
 	color: red;
 }
 
-.success {
-	color: green;
-}
-
 textarea[readonly="readonly"] {
 	background-color: #f2f1f0;
 	border: #f2f1f0 1px solid;
@@ -119,7 +121,24 @@ p {
 }
 
 a {
-	color: #6495ed;
+  width: 100%;
+  background-color: #2196F3;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+input[type=submit] {
+  width: 100%;
+  background-color: #2196F3;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 /*
@@ -147,8 +166,8 @@ div.about>* {
 	height: 20px;
 	list-style-type: none;
 	margin: auto;
-	background-color: #f5f5f5;
-	padding-left: 5px;
+	padding-left: 223px;
+	margin-top: 28px;
 }
 
 .horizMenu li {
