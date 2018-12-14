@@ -221,17 +221,6 @@
 						<a class="span3 buttons1 small_font1" href="/soapclient"
 						title="Un-Google Link">SOAP UI</a>
 				</div>
-				<div style="text-align: center;" class="adsense">
-					<script async
-						src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
-						type="87b2557a5fa585999cc1d9aa-text/javascript"></script>
-					<ins class="adsbygoogle"
-						style="display: inline-block; width: 728px; height: 90px"
-						data-ad-client="ca-pub-4125058781634690" data-ad-slot="2203092761"></ins>
-					<script type="87b2557a5fa585999cc1d9aa-text/javascript">
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-				</div>
 				<h3 class='newFunctionalityHead'>Functionality</h3>
 				<div class="cnt">
 					<a class="span3 buttons1 firstchild" href="/ip-tools"
