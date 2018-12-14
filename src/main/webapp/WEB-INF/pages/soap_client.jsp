@@ -41,26 +41,42 @@
 	function showOthers() {
 		document.getElementById("showOthers").style.display = 'block';
 	}
+	
+	$(document).ready(function() { 
+		$("#wsdlNameId").attr("value", "WSDl here..."); 
+		var text = "WSDl here..."; 
+		$("#wsdlNameId").focus(function() {
+			$(this).addClass("active");
+			if($(this).attr("value") == text) $(this).attr("value", ""); 
+		});
+		$("#wsdlNameId").blur(function() { 
+			$(this).removeClass("active"); 
+			if($(this).attr("value") == "") $(this).attr("value", text);
+			});
+		});
+
 </script>
 </head>
 <body>
 	<form id="inputwsdl" action="processwsdl" method="post">
 		<div id="top">
-			<input type="text" name="wsdlName" size="60" value="WSDl here..">
-			<input type="submit" value="Validate">
-			<br> <br>
+			<div>
+				<input type="text" class="advancedSearchTextBox" id="wsdlNameId" name="wsdlName" size="60">
+				<input type="submit" value="Validate">
+			</div><h1>
 				<c:forEach items="${serviceMapDetails}" var="op">
 					<input type="radio" name="opName" id="opName"
 						onclick="fillSoapReq(this.value);showOthers()" value="${op.value}">${op.key}
-				</c:forEach>
+				</c:forEach></h1>
 				<br>
 				<div id="showOthers" style="display: none;">
-				<label for="input" id="endPointLabel">End Point	URL:</label> 
+				<h1><label for="input" id="endPointLabel">End Point	URL:</label>
 				<select id="urls" name="urls" onchange="selectEndpoint(this.value);">
 					<c:forEach items="${serviceNames}" var="sn">
 						<option value="${sn}">${sn}</option>
 					</c:forEach>
 				</select>
+				</h1> 
 			</div>
 		</div>
 	</form>
