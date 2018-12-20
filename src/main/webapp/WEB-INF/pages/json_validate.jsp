@@ -40,35 +40,27 @@
 
 	</div>
 
-	<form id="process1" method="POST" action="/generate">
+	<form id="process1" method="POST" action="/validate">
 		<div id="left" class="content">
 			<div class="horiz">
-				<label for="input" class="label info">Liquibase Script(Single changeset):</label>
+				<label for="input" class="label info">JSON:</label>
 			</div>
-			<textarea name="input" rows="20" cols="20" id="input">${inputReq}</textarea>
+			<textarea name="jsonInputReq" rows="20" cols="20" id="jsonInputReq">${jsonInput}</textarea>
 			<div class="horiz">
-				<div class="left">
-					<h1><input type="radio" name="dbType" value="oracle" checked>Oracle
-					<input type="radio" name="dbType" value="db2">DB2
-					<input type="radio" name="dbType" value="mssql">MSSQL
-					<input type="radio" name="dbType" value="all">All</h1>
-				</div>
 				<div class="right">
-					<input type="submit" value="Generate SQL" style="margin-right: 30px">
+					<input type="submit" value="Validate" style="margin-right: 30px">
 				</div>
 			</div>
 		</div>
-	</form>
-
-	<div id="right" class="content">
+		<div id="right" class="content">
 		<div class="horiz">
-			<label class="label success">Generation result:</label> <span
+			<label class="label success">JSON Schema:</label> <span
 				class="error starthidden" id="processingFailure">failure</span> <span
 				class="success starthidden" id="processingSuccess">success</span>
 		</div>
-		<textarea name="results" rows="20" cols="20" id="results"
-			readonly="readonly">${result}</textarea>
+		<textarea name="jsonSchemaReq" rows="20" cols="20" id="jsonSchemaReq">${jsonSchema}</textarea>
 	</div>
+	</form>
 </body>
 
 

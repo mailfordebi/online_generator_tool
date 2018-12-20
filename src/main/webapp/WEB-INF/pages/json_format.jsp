@@ -20,7 +20,7 @@
 <body>
 	<div class="horizMenu">
 		<ul>
-			<li ><a href="index.jsp">Instance validation</a></li>
+			<li ><a href="/">Home</a></li>
 			<li><a href="syntax.jsp">Schema syntax validation</a></li>
 			<li><a href="jjschema.jsp">Java to JSON Schema</a></li>
 			<li><a href="schema2pojo.jsp">JSON Schema to Java</a></li>

@@ -100,8 +100,8 @@
 			<h3 class='newFunctionalityHead'>Popular Functionality</h3>
 			<article id="Web_Viewer_Editors" class="active article">
 				<div class="cnt">
-					<a class="span3 buttons1" href="/jsonviewer" title="JSON Viewer">JSON
-						Viewer</a> <a class="span3 buttons1" href="/jsonvalidator"
+					<a class="span3 buttons1" href="/jsonformat" title="JSON Formatter">JSON
+						Formatter</a> <a class="span3 buttons1" href="/jsonvalidate"
 						title="JSON Validator">JSON Validator</a> <a
 						class="span3 buttons1" href="/base64-decode">Base64 Decode</a> <a
 						class="span3 buttons1" href="/hex-decimal-converter">Hex to
