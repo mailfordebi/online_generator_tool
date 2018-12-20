@@ -79,6 +79,11 @@
 			<artifactId>soa-model-core</artifactId>
 			<version>1.6.0</version>
 		</dependency>
+		<!-- <dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-xc</artifactId>
+			<version>1.9.12</version>
+		</dependency> -->
 	</dependencies>
 
 	<build>
