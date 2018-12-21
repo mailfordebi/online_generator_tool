@@ -1,5 +1,6 @@
 
 <!DOCTYPE html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>Liquibase xml to Database script</title>
@@ -45,10 +46,16 @@
 			<div class="horiz">
 				<label for="input" class="label info">JSON:</label>
 			</div>
-			<textarea name="jsonInputReq" rows="20" cols="20" id="jsonInputReq">${jsonInput}</textarea>
+			<textarea name="jsonData" rows="20" cols="20" id="jsonData">${jsonData}</textarea>
 			<div class="horiz">
 				<div class="right">
-					<input type="submit" value="Validate" style="margin-right: 30px">
+					<input type="submit" value="Format JSON" style="margin-right: 30px">
+					<c:if test="${'error'eq error}">
+						<label class="label info">${errorInfo}</label>
+       			     </c:if>
+					<c:if test="${'Valid'eq isValid}">
+						<label class="label info">${isValid}</label>
+					</c:if>
 				</div>
 			</div>
 		</div>
@@ -58,9 +65,10 @@
 				class="error starthidden" id="processingFailure">failure</span> <span
 				class="success starthidden" id="processingSuccess">success</span>
 		</div>
-		<textarea name="jsonSchemaReq" rows="20" cols="20" id="jsonSchemaReq">${jsonSchema}</textarea>
+		<textarea name="jsonSchema" rows="20" cols="20" id="jsonSchema">${jsonSchema}</textarea>
 	</div>
 	</form>
+	
 </body>
 
 

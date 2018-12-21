@@ -26,13 +26,13 @@ public class Test1 {
 		
 		 try {
 		       ObjectMapper mapper = new ObjectMapper();
-		       String test = "{\"age\":29,\"messages\":[\"msg 1\",\"msg 2\",\"msg 3\"],\"name\":\"mkyong\"}";
+		       String test = "{\"age\":29,\"messages\":[\"msg 1\",\"msg 2\",\"msg 3\"],\"name\":\"mkyong\"";
 		       mapper.readTree(test);
 		       System.out.println("valid");
 		       
 		       
 		    } catch (IOException e) {
-		       e.printStackTrace();
+		      System.out.println(e.getMessage().substring(0, e.getMessage().indexOf(":")));
 		    }
 		
 

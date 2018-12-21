@@ -1,4 +1,4 @@
-package sample.wsdl;
+package com.test.jsonvalidation.util;
 
 import java.io.File;
 import java.io.IOException;
