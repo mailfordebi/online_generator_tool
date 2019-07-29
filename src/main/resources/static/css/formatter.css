@@ -510,7 +510,7 @@ table.center {
 
 .footerpart {
 	-webkit-transform: translateZ(0);
-	background: #fff;
+	background: #eee;
 	box-shadow: 0 -1px 2px 0 rgba(0, 0, 0, .1), 0 1px 0 0 rgba(0, 0, 0, .1);
 	overflow: visible
 }
@@ -777,9 +777,12 @@ table.center {
 .buttons1 {
 	color: #272727;
 	font-weight: 400;
-	border: 1px solid #272727;
+	border: 1.5px solid #272727;
 	padding: 15px;
-	text-decoration: none
+	text-decoration: none;
+	border-radius: 100px;
+	background: whitesmoke;
+	padding: 10px;
 }
 
 .buttons:active {
@@ -3741,13 +3744,15 @@ button.btn::-moz-focus-inner, input[type=submit].btn::-moz-focus-inner {
 }
 
 .navbar-inverse .navbar-inner {
-	height: 50px
+	height: 55px;
+	background: lightgrey;
 }
 
 .navbar-inverse .brand, .navbar-inverse .nav>li>a {
 	color: #3f3e3e;
 	cursor: pointer;
-	font-weight: 700
+	font-weight: 700;
+	font-family: cursive;
 }
 
 .navbar-inverse .brand, .navbar-inverse .nav>li>a:after {
@@ -5504,7 +5509,7 @@ table.bordered-table td {
 	margin-right: 1%;
 	border-radius: 5px;
 	margin-top: 10px;
-	background-color: #fff
+	/* background-color: #fff */
 }
 
 .footerhead {
@@ -7540,7 +7545,7 @@ input:-moz-placeholder, input:-ms-input-placeholder, input::-webkit-input-placeh
 
 body, html {
 	width: 100%;
-	background: #fff;
+	background: linear-gradient(45deg, black, transparent);
 	-webkit-transition: background .6s;
 	-moz-transition: background .6s;
 	-ms-transition: background .6s;
