@@ -33,7 +33,7 @@ public class HTMLEditorController {
 		return ResponseEntity.ok().headers(responseHeaders).body(fileAsString);
 	}
 
-	@RequestMapping("/edit")
+	@RequestMapping("/html-editor")
 	public String edit() {
 		return "edit";
 	}

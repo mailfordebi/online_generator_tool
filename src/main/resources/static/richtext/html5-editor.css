@@ -384,7 +384,7 @@ body {
     background-color: #F0F0F0;
     ;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 13px;
+    font-size: 12px;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -482,16 +482,16 @@ strong {
     color: #FFF !important;
 }
 .mainNavi {
-	margin-left: 20px;
+	margin-left: -45px;
 }
 .mainNavi li {
     float: left;
 }
 .mainNavi li a {
-    background-color: #296080;
+    background-color: #317399;
     color: #fff;
     display: block;
-    font-size: 12px;
+    font-size: 13px;
     cursor: pointer;
     font-weight: bold;
     margin-right: 0px;
@@ -715,11 +715,13 @@ a.sharede {
     margin: auto;
     max-width: 1900px;
     position: relative;
-    width: 90%;
+    width: 100%;
 }
 .headerLeftSect {
 	float: left;
 	width: 40%;
+	margin-top: -16px;
+    width: 100%;
 }
 .headerRightSect {
     float: right;
@@ -895,9 +897,10 @@ a.sharede {
 }
 .headerLine {
     width: 100%;
-    background-color: #317399;
+    background-color: lightgrey;
     margin-bottom: 10px;
     padding: 20px 7px 5px;
+    height: 55px;
 }
 #pagewrap {
     width: 98%;
@@ -1389,7 +1392,7 @@ textarea#inputfield {
     border-radius: 0 10px 10px 0;
     color: #FFF;
     display: block;
-    font-size: 1.4em;
+    font-size: 1.2em !important;
     font-weight: bold;
     line-height: 1.4em;
     min-width: 90px;
@@ -1413,6 +1416,7 @@ textarea#inputfield {
     min-width: 400px;
 }
 .settingsList {
+	padding-left: 60px;
     background: url("images/ikonocskak.png") no-repeat scroll 35px 31px #eee;
     padding-bottom: 10px;
 }

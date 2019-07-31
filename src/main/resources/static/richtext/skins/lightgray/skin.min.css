@@ -94,7 +94,8 @@ div.mce-edit-area {
 }
 
 .mce-statusbar .mce-container-body {
-	position: relative
+	position: relative;
+	height: 40px !important;
 }
 
 .mce-fullscreen .mce-resizehandle {

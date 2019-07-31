@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-<title>HTML Editor - Web Content Composer</title>
+<title>Code-Edit-Beautify(HTML Editor) - Web Content Composer</title>
 <link rel="stylesheet" href="richtext/docs.css">
 <link rel="stylesheet" href="richtext/codemirror.css">
 <link
@@ -24,35 +24,44 @@
 </head>
 <body onload="initoptions(); ">
 	<div id="popupUzenetBox">
-		<div id="popupUzenet">HTML Editor - Web Content Composer</div>
+		<div id="popupUzenet">Code-Edit-Beautify(HTML Editor) - Web Content Composer</div>
 		<div
 			onclick="document.getElementById('popupUzenetBox').style.display='none';"
 			class="okButton">OK</div>
 	</div>
 	<div id="logContainer"></div>
-	
+	<header>
+	<div class="headerLine">
+	<%-- <%@include file="header.jsp" %> --%>
+		<div class="centerHeader">
+			<div class="headerLeftSect">
+				<div class="headerFirstRow">
+					<div class="logo">
+						<!-- <img src="/images/logo1.png" alt="Out of Memory"> -->
+						<!-- <h4 style="font-size: 24px;">Out of Memory</h4> -->
+						<a href="http://localhost:8087/code-edit-beautify/html-editor" class="brand">
+							<div class="cblogoimage" title="Out of Memory"></div>
+						</a>
+					</div>
+					<nav style="float: right;margin-top: 5px;">
+						<ul class="mainNavi">
+							<li style="margin-right: 10px;"><a onclick="startFirstTour();">Demo</a></li>
+							<li style="margin-right: 10px;"><a href="/help" target="_blank">Help</a></li>
+							<li><a href="http://dpp-blog-info.ap-southeast-1.elasticbeanstalk.com/myblogindex" target="_blank">Blog</a></li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+			<div class="clearboth">
+			</div>
+		</div>
+	</div>
+</header>
 	<div id="pagewrap">
 		<div class="programIsThinking"></div>
 		<div id="editorWrapper">
 			<div id="szekciok">
 				<div class="szekcio1">
-					<div id="sourceFieldecske"></div>
-					<script>
-						var sourceEditorFricc = CodeMirror(document
-								.getElementById("sourceFieldecske"), {
-							value : "",
-							lineNumbers : true,
-							styleActiveLine : true,
-							mode : "text/html",
-							lineWrapping : true,
-							matchTags : {
-								bothTags : true
-							},
-						});
-						sourceEditorFricc.on("change", function() {
-							inputChanged();
-						});
-					</script>
 					<div class="commandBoxes clearfix">
 						<div class="multiButton">
 							<div title="Adjust cleaning options" class="cleanOptionsToggle">
@@ -88,6 +97,23 @@
 						</a>
 						<div id="inputLength">Source: 0</div>
 					</div>
+					<div id="sourceFieldecske"></div>
+					<script>
+						var sourceEditorFricc = CodeMirror(document
+								.getElementById("sourceFieldecske"), {
+							value : "",
+							lineNumbers : true,
+							styleActiveLine : true,
+							mode : "text/html",
+							lineWrapping : true,
+							matchTags : {
+								bothTags : true
+							},
+						});
+						sourceEditorFricc.on("change", function() {
+							inputChanged();
+						});
+					</script>
 				</div>
 				<div class="szekcio2">
 					<form method="post">
@@ -96,20 +122,6 @@
 				</div>
 				<div class="clearboth"></div>
 			</div>
-			<!-- <div id="sidebar">
-				<div id="wrapAs">
-					<script async
-						src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-					Blue SkySkraper 300x600
-					<ins class="adsbygoogle"
-						style="display: inline-block; width: 300px; height: 600px"
-						data-ad-client="ca-pub-9728962508602593" data-ad-slot="1354463266"></ins>
-					<script>
-						(adsbygoogle = window.adsbygoogle || []).push({});
-					</script>
-				</div>
-				<div id="sidebarContent"></div>
-			</div> -->
 		</div>
 		<div class="klirfix"></div>
 		<div id="lipszuTextarea"></div>
@@ -333,6 +345,7 @@
 					Now</a>
 			</div>
 		</div>
+	<%@include file="footer.jsp"%>
 	</div>
 	<script async
 		src="https://www.googletagmanager.com/gtag/js?id=UA-69513418-1"></script>
