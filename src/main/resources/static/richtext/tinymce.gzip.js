@@ -23,7 +23,8 @@
 		}
 		var o = "";
 		//return o += i("plugin", e), o += i("theme", n), o += i("language", t), o && (u.core ? o += "&core=false" : u.core = !0, o = "https://html5-editor.net/tinymce/tinymce.gzip.php?js=true" + o), o
-		return "http://localhost:8087/code-edit-beautify/richtext";
+		//return "http://localhost:8087/code-edit-beautify/richtext";
+		return "http://code-edit-beautify.ap-southeast-1.elasticbeanstalk.com/richtext";
 	}
 
 	function t(n) {
