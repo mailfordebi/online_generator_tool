@@ -39,7 +39,7 @@
 					<div class="logo">
 						<!-- <img src="/images/logo1.png" alt="Out of Memory"> -->
 						<!-- <h4 style="font-size: 24px;">Out of Memory</h4> -->
-						<a href="http://localhost:8087/code-edit-beautify/html-editor" class="brand">
+						<a href="${pageContext.request.contextPath}/html-editor" class="brand">
 							<div class="cblogoimage" title="Out of Memory"></div>
 						</a>
 					</div>

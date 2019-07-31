@@ -4,15 +4,16 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.test</groupId>
-	<artifactId>online_generator_tool</artifactId>
+	<artifactId>code-edit-beautify</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
-	<name>LiquibaseScriptGenerator</name>
+	<name>code-edit-beautify</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<java.version>1.8</java.version>
+		<start-class>com.test.MainApp</start-class>
 	</properties>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
