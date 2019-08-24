@@ -18,8 +18,8 @@
 <script src="richtext/matchtags.js"></script>
 <script src="richtext/active-line.js"></script>
 <script src="richtext/xml.js"></script>
-<script src="richtext/html5-editor.js?x=2019"></script>
-<link rel="stylesheet" type="text/css" href="richtext/html5-editor.css?ver=2019" />
+<script src="richtext/htmleditor.js?x=2019"></script>
+<link rel="stylesheet" type="text/css" href="richtext/htmleditor.css?ver=2019" />
 <script src="richtext/linketado.js?x=190006"></script>
 </head>
 <body onload="initoptions(); ">
@@ -46,7 +46,7 @@
 					<nav style="float: right;margin-top: 5px;">
 						<ul class="mainNavi">
 							<li style="margin-right: 10px;"><a onclick="startFirstTour();">Demo</a></li>
-							<li style="margin-right: 10px;"><a href="/help" target="_blank">Help</a></li>
+							<li style="margin-right: 10px;"><a onclick="formatHTML();">Format</a></li>
 							<li><a href="http://dpp-blog-info.ap-southeast-1.elasticbeanstalk.com/myblogindex" target="_blank">Blog</a></li>
 						</ul>
 					</nav>
